@@ -22,14 +22,14 @@ class UserBalanceController extends Controller
     }
 
     /**
-     * Show an item of resource
-     *
+     * Show balance of a user
+     * @author saman
      * @param int $userId
      * @return JsonResponse
      *
      * @OA\Get(
      *      path="/get-balance/{userId}",
-     *      summary="Show balance of user",
+     *      summary="Show balance of a user",
      *      description="",
      *      operationId="UserBalanceShow",
      *      tags={"UserBalance"},
@@ -47,15 +47,13 @@ class UserBalanceController extends Controller
      *          response=200,
      *          description="Successful operation",
      *          @OA\JsonContent(
-     *              @OA\Property(property="message", type="string", example="OK"),
-     *              @OA\Property(property="data",  ref="#/components/schemas/CompanyResource")
+     *              @OA\Property(property="amount", type="int", example=10000)
      *          )
      *       ),
      *      @OA\Response(
      *          response=404,
      *          description="Resource Not Found",
      *          @OA\JsonContent(
-     *              @OA\Property(property="code", type="string", example="not_found"),
      *              @OA\Property(property="message", type="string", example="Not Found"),
      *              @OA\Property(property="errors", type="object", example={})
      *          )

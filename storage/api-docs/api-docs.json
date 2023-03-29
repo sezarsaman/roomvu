@@ -1,0 +1,173 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Roomvu version 1",
+        "description": "Implementation of Swagger within Roomvu version 1",
+        "contact": {
+            "email": "sezarsaman@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/add-money": {
+            "post": {
+                "tags": [
+                    "Transaction"
+                ],
+                "summary": "Store a transaction",
+                "description": "",
+                "operationId": "TransactionStore",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreTransactionRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful Creation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "reference_id": {
+                                            "type": "integer",
+                                            "example": 123123123123
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "type": "string",
+                                            "example": "unprocessable_entity"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unprocessable Entity"
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "example": {
+                                                "example": [
+                                                    "The example field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/get-balance/{userId}": {
+            "get": {
+                "tags": [
+                    "UserBalance"
+                ],
+                "summary": "Show balance of a user",
+                "description": "",
+                "operationId": "UserBalanceShow",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "ID of user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "amount": {
+                                            "type": "integer",
+                                            "example": 10000
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Not Found"
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "example": []
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "StoreTransactionRequest": {
+                "title": "StoreTransactionRequest",
+                "description": "Request body for storing transaction",
+                "properties": {
+                    "user_id": {
+                        "description": "Id of a user",
+                        "type": "integer",
+                        "example": 1850
+                    },
+                    "amount": {
+                        "description": "Amount of Transaction",
+                        "type": "integer",
+                        "example": 100000
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "StoreTransactionRequest"
+                }
+            }
+        }
+    }
+}

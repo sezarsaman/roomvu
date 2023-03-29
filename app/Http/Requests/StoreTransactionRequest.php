@@ -5,11 +5,24 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @OA\Schema(
+ *     title="StoreTransactionRequest",
+ *     description="Request body for storing transaction",
+ *     @OA\Xml(
+ *         name="StoreTransactionRequest"
+ *     ),
+ *     @OA\Property(property="user_id", type="integer", description="Id of a user", example=1850),
+ *     @OA\Property(property="amount", type="integer", description="Amount of Transaction", example=100000),
+ * )
+ */
 class StoreTransactionRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+    /*
+     |--------------------------------------------------------------------------
+     | Functions:
+     |--------------------------------------------------------------------------
+    */
     public function authorize(): bool
     {
         return true;
