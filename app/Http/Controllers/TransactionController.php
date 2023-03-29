@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTransactionRequest;
+use App\Http\Resources\TransactionResource;
 use App\Services\Transaction\TransactionService;
 use Illuminate\Http\JsonResponse;
 
@@ -24,14 +25,14 @@ class TransactionController extends Controller
     {
         try {
             return response()->json(
-                [
-                    'reference_id' => $this->transactionService->storeTransaction(
+                new TransactionResource(
+                    $this->transactionService->storeTransaction(
                         [
                             'user_id' => (int) $request->get('user_id'),
                             'amount' => (int) $request->get('amount'),
                         ]
                     )
-                ],
+                ),
                 201
             );
         } catch (\Exception $exception){

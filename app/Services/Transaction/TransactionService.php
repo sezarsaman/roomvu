@@ -7,14 +7,6 @@ use App\Services\Transaction\Contracts\TransactionContract;
 use App\Services\UserBalance\UsersBalanceService;
 use Illuminate\Support\Facades\DB;
 
-/**
- *
- * Class TransactionService
- *
- * @mixin Transaction
- *
- */
-
 class TransactionService implements TransactionContract
 {
 
@@ -24,7 +16,7 @@ class TransactionService implements TransactionContract
      |--------------------------------------------------------------------------
     */
 
-    public function storeTransaction(array $transactionArray): int
+    public function storeTransaction(array $transactionArray): Transaction
     {
         return DB::transaction(function () use ($transactionArray){
 
@@ -41,7 +33,7 @@ class TransactionService implements TransactionContract
                 $transactionArray['amount']
             );
 
-            return $transaction->reference_id;
+            return $transaction;
 
         });
     }
