@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::group(
+    [
+        'namespace' => 'App\Http\Controllers',
+    ],
+    function () {
+
+        Route::get('get-balance/{user_id}', 'UserBalanceController@show')
+            ->name('user_balance.show');
+
+
+        Route::post('add-money', 'TransactionController@store')
+            ->name('transaction.store');
+    }
+);
