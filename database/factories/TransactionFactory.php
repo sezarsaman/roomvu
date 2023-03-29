@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Transaction;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,6 +22,10 @@ class TransactionFactory extends Factory
             'user_id' => fake()->numberBetween(1000,2000),
             'amount' => fake()->numberBetween(-1000000000000, 1000000000000),
             'reference_id' => time() + fake()->numberBetween(1000000,100000000),
+            'created_at' => fake()->dateTimeBetween(
+                Carbon::now()->subMonths(6)->toDateTimeString(),
+                Carbon::now()->toDateTimeString()
+            )
         ];
     }
 }
