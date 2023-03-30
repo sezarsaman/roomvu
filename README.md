@@ -36,7 +36,7 @@ to expose them to other micro-services.
 - with postman or any other API test tools we got two APIs:
 - - `http://localhost/add-money` POST Request
 - - `http://localhost/get-balance/{user_id}` GET Request
-- Also you can check the daily command for calculating the total and daily transactions per user of all the users by going to bash and entering this command with or without user id:
+- Also you can check the daily command for calculating the total and daily transactions per user or all the users by opening the bash and entering this command with or without user id:
 - - `php artisan app:transactions:calculate-transactions {user_id}`
 
 
