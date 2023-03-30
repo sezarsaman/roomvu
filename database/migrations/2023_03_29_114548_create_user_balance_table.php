@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('users_balance', function (Blueprint $table) {
             $table->bigIncrements("id");
-            $table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger("user_id")->unique();
             $table->bigInteger("balance")->default(0);
             $table->timestamps();
         });

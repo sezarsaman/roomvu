@@ -19,9 +19,9 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => fake()->numberBetween(1000,2000),
-            'amount' => fake()->numberBetween(-1000000000000, 1000000000000),
-            'reference_id' => time() + fake()->numberBetween(1000000,100000000),
+            'user_id' => fake()->numberBetween(1000,10000),
+            'amount' => fake()->numberBetween(-1000000, 1000000),
+            'reference_id' => time() + fake()->numberBetween(100000,1000000),
             'created_at' => fake()->dateTimeBetween(
                 Carbon::now()->subMonths(6)->toDateTimeString(),
                 Carbon::now()->toDateTimeString()
